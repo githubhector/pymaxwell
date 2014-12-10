@@ -3,13 +3,17 @@ import threading
 
 # TODO: use a stopwatch class
 
-engine_running = False
+def tick_thread():
+    print "Starting tick..."
+    while True:
+        Engine.tick()
 
-class State(object):
+class Engine(object):
 
     TICKS_PER_LOG_INTERVAL = 10000000
     total_ticks = 0L
     clock_previous = 0.0
+    engine_started = False
 
     @classmethod
     def log_state_info(cls):
@@ -17,7 +21,7 @@ class State(object):
         clock_delta = clock_current - cls.clock_previous
         ticks_per_second = cls.TICKS_PER_LOG_INTERVAL / clock_delta
         micros_per_tick = 1000000. / ticks_per_second
-        print "clock: %s, ticks: %s, clock delta: %s, ticks per sec: %s, micros per tick: %s" % (clock_current, State.total_ticks,
+        print "clock: %s, ticks: %s, clock delta: %s, ticks per sec: %s, micros per tick: %s" % (clock_current, Engine.total_ticks,
                                                                             clock_delta, ticks_per_second, micros_per_tick)
         cls.clock_previous = clock_current
 
@@ -27,13 +31,14 @@ class State(object):
         if cls.total_ticks % cls.TICKS_PER_LOG_INTERVAL == 0:
             cls.log_state_info()
 
-def tick_thread():
-    print "Starting tick..."
-    while True:
-        State.tick()
+    @classmethod
+    def start(cls):
+        print "Starting engine..."
+        cls.engine_started = True
+        tick = threading.Thread(name='TICK', target=tick_thread)
+        tick.start()
 
-def start():
-    print "Starting the engine..."
-    engine_running = True
-    tick = threading.Thread(name='TICK', target=tick_thread)
-    tick.start()
+    @classmethod
+    def stop(cls):
+        print "Stopping engine..."
+        cls.engine_started = False

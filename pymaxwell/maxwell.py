@@ -21,11 +21,11 @@ class MaxwellCli(cmd.Cmd):
 
     def do_start(self, line):
         "Start the Maxwell engine"
-        mx_engine.start()
+        mx_engine.Engine.start()
 
     def do_stop(self, line):
         "Stop the Maxwell engine"
-        mx_engine.stop()
+        mx_engine.Engine.stop()
 
 def cli_thread():
     print "Starting CLI..."
