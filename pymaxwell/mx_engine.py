@@ -3,6 +3,8 @@ import threading
 
 # TODO: use a stopwatch class
 
+engine_running = False
+
 class State(object):
 
     TICKS_PER_LOG_INTERVAL = 10000000
@@ -32,5 +34,6 @@ def tick_thread():
 
 def start():
     print "Starting the engine..."
+    engine_running = True
     tick = threading.Thread(name='TICK', target=tick_thread)
     tick.start()

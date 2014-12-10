@@ -23,6 +23,10 @@ class MaxwellCli(cmd.Cmd):
         "Start the Maxwell engine"
         mx_engine.start()
 
+    def do_stop(self, line):
+        "Stop the Maxwell engine"
+        mx_engine.stop()
+
 def cli_thread():
     print "Starting CLI..."
     while True:
@@ -31,8 +35,6 @@ def cli_thread():
         except Exception as e:
             print "Exception: %s" % e
             traceback.print_exc()
-
-
 
 if __name__ == '__main__':
     cli = threading.Thread(name='CLI', target=cli_thread)
