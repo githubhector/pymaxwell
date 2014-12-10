@@ -1,12 +1,18 @@
 import time
 import threading
+import sys
 
 # TODO: use a stopwatch class
 
 def tick_thread():
-    print "Starting tick..."
+    print "Starting tick thread..."
+
     while True:
-        Engine.tick()
+        if not Engine.engine_started:
+            print "Exiting tick thread..."
+            sys.exit()
+        else:
+            Engine.tick()
 
 class Engine(object):
 
