@@ -10,6 +10,7 @@ import mx_engine
 class MaxwellCli(cmd.Cmd):
 
     prompt = "$ "
+    engine = mx_engine.Engine()
 
     def emptyline(self):
         pass
@@ -21,11 +22,11 @@ class MaxwellCli(cmd.Cmd):
 
     def do_start(self, line):
         "Start the Maxwell engine"
-        mx_engine.Engine.start()
+        self.engine.engine_start()
 
     def do_stop(self, line):
         "Stop the Maxwell engine"
-        mx_engine.Engine.stop()
+        self.engine.engine_stop()
 
 def cli_thread():
     print "Starting CLI..."
