@@ -27,9 +27,9 @@ class Engine(object):
         clock_delta = clock_current - cls.clock_previous
         ticks_per_second = cls.TICKS_PER_LOG_INTERVAL / clock_delta
         micros_per_tick = 1000000. / ticks_per_second
+        cls.clock_previous = clock_current
         print "clock: %s, ticks: %s, clock delta: %s, ticks per sec: %s, micros per tick: %s" % (clock_current, Engine.total_ticks,
                                                                             clock_delta, ticks_per_second, micros_per_tick)
-        cls.clock_previous = clock_current
 
     @classmethod
     def tick(cls):
