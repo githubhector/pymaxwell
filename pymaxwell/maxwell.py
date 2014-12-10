@@ -1,11 +1,13 @@
 import time
 import cmd
 import traceback
+import threading
+import sys
 
+# TODO: use a stopwatch class
+# TODO: figure out why autocompletion isn't working
 
 class State(object):
-
-    # TODO: use a stopwatch class
 
     TICKS_PER_LOG_INTERVAL = 1000000
     total_ticks = 0L
@@ -29,16 +31,31 @@ class State(object):
 
 
 class MaxwellCli(cmd.Cmd):
-    pass
+
+    prompt = "$ "
+
+    def emptyline(self):
+        pass
+
+    def do_quit(self, line):
+        "Exit the python interpreter"
+        print "Bye..."
+        sys.exit()
+
+    def do_start(self, line):
+        "Start the simulation"
+        print "Starting the simulation..."
+        tick = threading.Thread(name='TICK', target=tick_thread)
+        tick.start()
 
 
-if __name__ == '__main__':
-
-    # TODO: put the tick and the CLI on separate threads
-
+def tick_thread():
+    print "Starting tick..."
     while True:
         State.tick()
 
+def cli_thread():
+    print "Starting CLI..."
     while True:
         try:
             MaxwellCli().cmdloop()
@@ -46,3 +63,8 @@ if __name__ == '__main__':
             print "Exception: %s" % e
             traceback.print_exc()
 
+
+
+if __name__ == '__main__':
+    cli = threading.Thread(name='CLI', target=cli_thread)
+    cli.start()
