@@ -4,7 +4,7 @@ import sys
 
 class Engine(threading.Thread):
 
-    TICKS_PER_LOG_INTERVAL = 10000000
+    TICKS_PER_LOG_INTERVAL = 1000000
     total_ticks = 0L
     clock_previous = 0.0
     engine_started = False
@@ -27,13 +27,9 @@ class Engine(threading.Thread):
             self.log_state_info()
 
     def run(self):
-        print "Starting tick thread..."
-        while True:
-            if not self.engine_started:
-                print "Exiting tick thread..."
-                sys.exit()
-            else:
-                self.tick()
+        print "Starting engine thread..."
+        while self.engine_started:
+            self.tick()
 
     def engine_start(self):
         print "Starting engine..."
