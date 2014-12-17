@@ -1,27 +1,27 @@
 import time
 import threading
-import sys
 
 class Engine(object):
 
-    TICKS_PER_LOG_INTERVAL = 1000000
+    TICKS_PER_UPDATE_INTERVAL = 1000000
+    MICROS_PER_SECOND = 1000000
     total_ticks = 0L
-    clock_previous = 0.0
+    stats_clock_previous = 0.0
+    ticks_per_second = 0.0
+    micros_per_tick = 0.0
     engine_started = False
 
-    def log_state_info(self):
-        clock_current = time.clock()
-        clock_delta = clock_current - self.clock_previous
-        ticks_per_second = self.TICKS_PER_LOG_INTERVAL / clock_delta
-        micros_per_tick = 1000000. / ticks_per_second
-        self.clock_previous = clock_current
-        print "clock: %s, ticks: %s, clock delta: %s, ticks per sec: %s, micros per tick: %s" % (clock_current, Engine.total_ticks,
-                                                                            clock_delta, ticks_per_second, micros_per_tick)
+    def update_stats(self):
+        clock_now = time.time()
+        clock_delta = clock_now - self.stats_clock_previous
+        self.ticks_per_second = self.TICKS_PER_UPDATE_INTERVAL / clock_delta
+        self.micros_per_tick = self.MICROS_PER_SECOND / self.ticks_per_second
+        self.stats_clock_previous = clock_now
 
     def tick(self):
         self.total_ticks += 1
-        if self.total_ticks % self.TICKS_PER_LOG_INTERVAL == 0:
-            self.log_state_info()
+        if self.total_ticks % self.TICKS_PER_UPDATE_INTERVAL == 0:
+            self.update_stats()
 
     def tick_loop_thread(self):
         print "Starting engine thread..."
@@ -39,6 +39,8 @@ class Engine(object):
         self.engine_started = False
 
     def engine_stats(self):
-        print "HERE HERE..."
+        clock_now = time.time()
+        print "clock: %.1f, ticks: %d, ticks per sec: %.1f, micros per tick: %.4f" % (clock_now, self.total_ticks,
+                                                                            self.ticks_per_second, self.micros_per_tick)
 
 
