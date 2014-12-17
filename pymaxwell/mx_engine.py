@@ -15,6 +15,16 @@ class Engine(object):
     def __init__(self):
         self.engine_start_time = time.time()
 
+    def tick(self):
+        self.total_ticks += 1
+        if self.total_ticks % self.TICKS_PER_UPDATE == 0:
+            self.update_stats()
+
+    def tick_loop(self):
+        while self.engine_started:
+            self.tick()
+        print "Exiting engine thread..."
+
     def update_stats(self):
         time_now = time.time()
         time_delta_since_previous_update = time_now - self.time_previous_update
@@ -22,21 +32,10 @@ class Engine(object):
         self.micros_per_tick = self.MICROS_PER_SECOND / self.ticks_per_second
         self.time_previous_update = time_now
 
-    def tick(self):
-        self.total_ticks += 1
-        if self.total_ticks % self.TICKS_PER_UPDATE == 0:
-            self.update_stats()
-
-    def tick_loop_thread(self):
-        print "Starting engine thread..."
-        while self.engine_started:
-            self.tick()
-        print "Exiting engine thread..."
-
     def engine_start(self):
         print "Starting engine..."
         self.engine_started = True
-        threading.Thread(target=self.tick_loop_thread).start()
+        threading.Thread(target=self.tick_loop).start()
 
     def engine_stop(self):
         print "Stopping engine..."
