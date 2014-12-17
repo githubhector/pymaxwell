@@ -28,6 +28,10 @@ class MaxwellCli(cmd.Cmd):
         "Stop the Maxwell engine"
         self.engine.engine_stop()
 
+    def do_stats(self, line):
+        "Report statistics"
+        self.engine.engine_stats()
+
 def cli_thread():
     print "Starting CLI..."
     while True:
