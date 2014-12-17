@@ -2,15 +2,12 @@ import time
 import threading
 import sys
 
-class Engine(threading.Thread):
+class Engine(object):
 
     TICKS_PER_LOG_INTERVAL = 1000000
     total_ticks = 0L
     clock_previous = 0.0
     engine_started = False
-
-    def __init__(self):
-        threading.Thread.__init__(self)
 
     def log_state_info(self):
         clock_current = time.clock()
@@ -26,15 +23,16 @@ class Engine(threading.Thread):
         if self.total_ticks % self.TICKS_PER_LOG_INTERVAL == 0:
             self.log_state_info()
 
-    def run(self):
+    def tick_loop_thread(self):
         print "Starting engine thread..."
         while self.engine_started:
             self.tick()
+        print "Exiting engine thread..."
 
     def engine_start(self):
         print "Starting engine..."
         self.engine_started = True
-        self.start()
+        threading.Thread(target=self.tick_loop_thread).start()
 
     def engine_stop(self):
         print "Stopping engine..."
