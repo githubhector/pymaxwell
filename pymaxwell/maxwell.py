@@ -29,7 +29,7 @@ class MaxwellCli(cmd.Cmd):
         self.engine.engine_stop()
 
     def do_stats(self, line):
-        "Report statistics"
+        "Report statistics -- yes do that"
         self.engine.engine_stats()
 
 def cli_thread():
