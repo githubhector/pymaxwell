@@ -4,9 +4,6 @@ import threading
 import sys
 import mx_engine
 
-
-# TODO: figure out why autocompletion isn't working
-
 class MaxwellCli(cmd.Cmd):
 
     prompt = "$ "
