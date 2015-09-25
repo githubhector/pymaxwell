@@ -14,6 +14,8 @@ class MaxwellCli(cmd.Cmd):
         pass
 
     def do_quit(self, line):
+        self.engine.engine_stop()
+        # TODO: wait for engine thread to complete
         print "Bye..."
         sys.exit()
 
