@@ -1,6 +1,7 @@
 import time
 import threading
 
+
 class Engine:
 
     TICKS_PER_STATS_UPDATE = 1000000
@@ -56,9 +57,9 @@ class Engine:
 
     def world_init(self):
         print "Initializing world..."
+        self.world.init()
 
     def world_update(self):
-        pass
-        #print "Updating world..."
+        self.world.update()
 
 
