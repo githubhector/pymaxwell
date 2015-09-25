@@ -1,7 +1,7 @@
 import time
 import threading
 
-class Engine(object):
+class Engine:
 
     TICKS_PER_STATS_UPDATE = 1000000
     MICROS_PER_SECOND = 1000000
@@ -11,9 +11,11 @@ class Engine(object):
     micros_per_tick = 0.0
     engine_started = False
     engine_start_time = 0.0
+    world = None
 
-    def __init__(self):
+    def __init__(self, world):
         self.engine_start_time = time.time()
+        self.world = world
 
     def tick_loop(self):
         while self.engine_started:
@@ -34,7 +36,7 @@ class Engine(object):
         self.time_previous_update = time_now
 
     def engine_start(self):
-        print "Starting engine..."
+        print "Starting engine for world: ", self.world.world_name
         self.world_init()
         self.engine_started = True
         self.engine_start_time = time.time()
