@@ -8,25 +8,31 @@ import world1
 class MaxwellCli(cmd.Cmd):
 
     prompt = ">> "
-    engine = mx_engine.Engine(world1.World1())
+    engine = None
 
     def emptyline(self):
         pass
 
     def do_quit(self, line):
-        self.engine.engine_stop()
-        # TODO: wait for engine thread to complete
+        if self.engine is not None:
+            self.engine.engine_stop()
         print "Bye..."
         sys.exit()
 
     def do_start(self, line):
+        self.engine = mx_engine.Engine(world1.World1())
         self.engine.engine_start()
 
     def do_stop(self, line):
-        self.engine.engine_stop()
+        if self.engine is not None:
+            self.engine.engine_stop()
+            self.engine = None
 
     def do_stats(self, line):
-        self.engine.engine_stats()
+        if self.engine is not None:
+            self.engine.engine_stats()
+        else:
+            print "Do not have an engine..."
 
 def cli_thread():
     print "Starting CLI..."
