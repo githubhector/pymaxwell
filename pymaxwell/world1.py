@@ -1,12 +1,9 @@
 class World1:
 
-    world_name = "World1"
+    WORLD_NAME = "World1"
     NUM_PARTICLES = 5
 
     def __init__(self):
-        pass
-
-    def init(self):
         print "Initializing instance of World1..."
         print "Creating particles list..."
         self.particles = list()
@@ -16,6 +13,7 @@ class World1:
 
     def update(self):
         pass
+
 
 class Particle(object):
     pass

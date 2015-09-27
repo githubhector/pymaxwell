@@ -4,7 +4,7 @@ import threading
 
 class Engine:
 
-    TICKS_PER_STATS_UPDATE = 1000000
+    TICKS_PER_STATS_UPDATE = 1000
     MICROS_PER_SECOND = 1000000
     total_ticks = 0L
     time_previous_update = 0.0
@@ -37,8 +37,7 @@ class Engine:
         self.time_previous_update = time_now
 
     def engine_start(self):
-        print "Starting engine for world: ", self.world.world_name
-        self.world_init()
+        print "Starting engine for world: ", self.world.WORLD_NAME
         self.engine_started = True
         self.engine_start_time = time.time()
         threading.Thread(target=self.tick_loop).start()
@@ -54,10 +53,6 @@ class Engine:
                                                                             self.ticks_per_second, self.micros_per_tick)
         else:
             print "Engine not running..."
-
-    def world_init(self):
-        print "Initializing world..."
-        self.world.init()
 
     def world_update(self):
         self.world.update()
