@@ -21,7 +21,7 @@ class World1:
 
 class Box():
     """ A box with given origin, and given x and y lengths. The box's origin is the
-    lower left corner
+    lower left corner. Expect orig to be a pair (x,y)
     """
     def __init__(self, orig, len_x, len_y):
         self.orig = orig
