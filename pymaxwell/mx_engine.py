@@ -37,7 +37,7 @@ class Engine:
         self.time_previous_update = time_now
 
     def engine_start(self):
-        print "Starting engine for world: ", self.world.WORLD_NAME
+        print "Starting ticks thread for world: ", self.world.WORLD_NAME
         self.engine_started = True
         self.engine_start_time = time.time()
         threading.Thread(target=self.tick_loop).start()
