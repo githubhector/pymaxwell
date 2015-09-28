@@ -27,7 +27,7 @@ class Engine:
         self.total_ticks += 1
         if self.total_ticks % self.TICKS_PER_STATS_UPDATE == 0:
             self.update_stats()
-        self.world_update()
+        self.world.update()
 
     def update_stats(self):
         time_now = time.time()
@@ -53,8 +53,5 @@ class Engine:
                                                                             self.ticks_per_second, self.micros_per_tick)
         else:
             print "Engine not running..."
-
-    def world_update(self):
-        self.world.update()
 
 
