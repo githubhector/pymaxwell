@@ -12,15 +12,14 @@ class World1:
         self.box = Box((0,0), 100, 50)
 
         print "Adding particles to the box..."
-        for i in range(0, self.NUM_PARTICLES):
-            self.box.add_particle_at_random(Particle(), self.box)
+        self.box.add_particles_at_random(NUM_PARTICLES)
 
     def update(self):
         pass
 
 
 class Box():
-    """ A box with given origin, and given x and y lengths. The box's origin is the
+    """ A box with given origin, and x, y lengths. The box's origin is the
     lower left corner. Expect orig to be a pair (x,y)
     """
     def __init__(self, orig, len_x, len_y):
@@ -30,7 +29,7 @@ class Box():
         self.x_interval = (orig[0], orig[0] + len_x)
         self.y_interval = (orig[1], orig[1] + len_y)
 
-    def add_particle_at_random(self, particle, box):
+    def add_particles_at_random(self, num_particles):
         pass
 
 
