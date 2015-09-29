@@ -12,7 +12,7 @@ class World1:
         self.box = Box((0,0), 100, 50)
 
         print "Adding particles to the box..."
-        self.box.add_particles_at_random(NUM_PARTICLES)
+        self.box.add_particles_at_random(self.NUM_PARTICLES)
 
     def update(self):
         pass
