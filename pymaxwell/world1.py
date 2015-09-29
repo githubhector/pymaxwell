@@ -1,8 +1,9 @@
+from random import randint
 
 class World1:
 
     WORLD_NAME = "World1"
-    NUM_PARTICLES = 5
+    NUM_PARTICLES = 200
     box = None
 
     def __init__(self):
@@ -30,7 +31,13 @@ class Box():
         self.y_interval = (orig[1], orig[1] + len_y)
 
     def add_particles_at_random(self, num_particles):
-        pass
+        print "x_interval", self.x_interval
+        print "y_interval", self.y_interval
+        for i in range(0, num_particles):
+            x_rand = randint(self.x_interval[0], self.x_interval[1])
+            y_rand = randint(self.y_interval[0], self.y_interval[1])
+            print "x_rand:", x_rand, " y_rand:", y_rand
+
 
 
 class Particle():
