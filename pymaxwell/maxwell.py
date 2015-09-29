@@ -9,6 +9,7 @@ class MaxwellCli(cmd.Cmd):
 
     prompt = ">> "
     engine = None
+    world = None
 
     def emptyline(self):
         pass
@@ -20,8 +21,12 @@ class MaxwellCli(cmd.Cmd):
         sys.exit()
 
     def do_start(self, line):
-        self.engine = mx_engine.Engine(world1.World1())
+        self.world = world1.World1()
+        self.engine = mx_engine.Engine(self.world)
         self.engine.engine_start()
+
+    def do_world(self, line):
+        pass
 
     def do_stop(self, line):
         if self.engine is not None:
