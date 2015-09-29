@@ -26,7 +26,7 @@ class MaxwellCli(cmd.Cmd):
         self.engine.engine_start()
 
     def do_world(self, line):
-        pass
+        self.world.show()
 
     def do_stop(self, line):
         if self.engine is not None:
