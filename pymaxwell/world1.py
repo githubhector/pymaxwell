@@ -1,4 +1,6 @@
 from random import randint
+from utils import StringBuilder
+
 
 class World1:
 
@@ -50,7 +52,10 @@ class Box():
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
-        return "HERE"
+        sb = StringBuilder()
+        sb.append("HERE1")
+        sb.append(", HERE2")
+        return sb.__str__()
 
 
 class Particle():
