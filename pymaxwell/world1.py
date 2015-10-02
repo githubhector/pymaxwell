@@ -53,7 +53,8 @@ class Box():
 
     def __str__(self):
         sb = StringBuilder()
-        sb.append("HERE1")
+        sb.append("World1:")
+        sb.append(" Origin:" + self.orig.__str__())
         sb.append(", HERE2")
         return sb.__str__()
 
