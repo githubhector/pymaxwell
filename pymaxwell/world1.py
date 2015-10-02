@@ -52,10 +52,12 @@ class Box():
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
+        # TODO: the "+" cats with a formatter
         sb = StringBuilder()
         sb.append("World1:")
-        sb.append(" Origin:" + self.orig.__str__())
-        sb.append(", HERE2")
+        sb.append(" origin:" + self.orig.__str__())
+        sb.append(" x_interval:" + self.x_interval.__str__() + " y_interval:" + self.y_interval.__str__())
+        sb.append(" number of particles: " + self.particles.__len__().__str__())
         return sb.__str__()
 
 
