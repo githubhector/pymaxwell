@@ -17,6 +17,7 @@ class World1:
 
     def show(self):
         print "show world state..."
+        print self.box
 
     def update(self):
         pass
@@ -47,6 +48,9 @@ class Box():
             y_rand = randint(self.y_interval[0], self.y_interval[1])
             self.add_particle(Particle(x_rand, y_rand))
             print "x_rand:", x_rand, " y_rand:", y_rand
+
+    def __str__(self):
+        return "HERE"
 
 
 class Particle():
