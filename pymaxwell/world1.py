@@ -18,8 +18,7 @@ class World1:
         self.box.add_particles_at_random(self.NUM_PARTICLES)
 
     def show(self):
-        print "show world state..."
-        print self.box
+        print "World1:\n%s" % self.box
 
     def update(self):
         pass
