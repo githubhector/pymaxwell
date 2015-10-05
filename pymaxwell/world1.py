@@ -55,10 +55,19 @@ class Box():
         sb = StringBuilder()
         sb.append("Box:")
         sb.append("\n  origin:%s, x_interval:%s, y_interval:%s" % (self.orig, self.x_interval, self.y_interval))
-        sb.append("\n  number of particles: %s" % num_particles)
+        sb.append("\n  number of particles: %s\n" % num_particles)
+
+        sb.append("    ")
+        for i in range(0, num_particles):
+            particle = self.particles[i]
+            sb.append("(%s,%s)" % (particle.x, particle.y))
+            if (i+1) % 20 == 0:
+                sb.append("\n    ")
+
         return sb.__str__()
 
 
 class Particle():
     def __init__(self, x, y):
-        pass
+        self.x = x
+        self.y = y
