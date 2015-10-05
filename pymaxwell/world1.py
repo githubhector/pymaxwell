@@ -51,10 +51,11 @@ class Box():
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
+        num_particles = self.particles.__len__()
         sb = StringBuilder()
-        sb.append("Box: ")
-        sb.append("origin:%s, x_interval:%s, y_interval:%s" % (self.orig, self.x_interval, self.y_interval))
-        sb.append(", number of particles: " + self.particles.__len__().__str__())
+        sb.append("Box:")
+        sb.append("\n  origin:%s, x_interval:%s, y_interval:%s" % (self.orig, self.x_interval, self.y_interval))
+        sb.append("\n  number of particles: %s" % num_particles)
         return sb.__str__()
 
 
