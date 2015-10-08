@@ -47,7 +47,7 @@ class Box():
         for i in range(0, num_particles):
             x_rand = randint(self.x_interval[0], self.x_interval[1])
             y_rand = randint(self.y_interval[0], self.y_interval[1])
-            self.add_particle(Particle(x_rand, y_rand))
+            self.add_particle(Particle(1, (x_rand, y_rand), (0,0)))
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Box():
         sb.append("    ")
         for i in range(0, num_particles):
             particle = self.particles[i]
-            sb.append("(%s,%s)" % (particle.x, particle.y))
+            sb.append("[p(%s,%s), v(%s,%s)]" % (particle.pos[0], particle.pos[1], particle.vel[0], particle.vel[1]))
             if (i+1) % 20 == 0:
                 sb.append("\n    ")
 
@@ -68,6 +68,10 @@ class Box():
 
 
 class Particle():
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    """ A circular particle with given radius, position and velocity.
+    Expect pos and vel to be pairs (x,y) and (vx, vy)
+    """
+    def __init__(self, radius, pos, vel):
+        self.radius = radius
+        self.pos = pos
+        self.vel = vel
