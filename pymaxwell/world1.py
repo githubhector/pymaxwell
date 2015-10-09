@@ -5,7 +5,7 @@ from utils import StringBuilder
 class World1:
 
     WORLD_NAME = "World1"
-    NUM_PARTICLES = 200
+    NUM_PARTICLES = 2
     box = None
 
     def __init__(self):
