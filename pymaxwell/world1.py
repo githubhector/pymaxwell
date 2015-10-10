@@ -21,7 +21,8 @@ class World1:
         print "World1:\n%s" % self.box
 
     def update(self):
-        pass
+        for particle in self.box.particles:
+            particle.update_position()
 
 
 class Box():
@@ -75,3 +76,6 @@ class Particle():
         self.radius = radius
         self.pos = pos
         self.vel = vel
+
+    def update_position(self):
+        pass
