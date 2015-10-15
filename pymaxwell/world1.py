@@ -38,6 +38,9 @@ class Vector():
     def scalar_mult(self, scalar):
         return Vector(scalar*self.x, scalar*self.y)
 
+    def __str__(self):
+        return "(%s,%s}" % (self.x, self.y)
+
 
 class Box():
     """ A box with given origin, and x, y lengths. The box's origin is the
@@ -75,7 +78,7 @@ class Box():
         sb.append("    ")
         for i in range(0, num_particles):
             particle = self.particles[i]
-            sb.append("[p(%s,%s), v(%s,%s)]" % (particle.pos[0], particle.pos[1], particle.vel[0], particle.vel[1]))
+            sb.append("[p(%s), v(%s)]" % (particle.pos, particle.vel))
             if (i+1) % 20 == 0:
                 sb.append("\n    ")
 
