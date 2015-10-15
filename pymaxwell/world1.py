@@ -6,7 +6,7 @@ from utils import StringBuilder
 class World1:
 
     WORLD_NAME = "World1"
-    NUM_PARTICLES = 2
+    NUM_PARTICLES = 5
     box = None
     t_previous = 0
 
@@ -80,6 +80,7 @@ class Box():
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
+        num_particles_per_line_in_display = 1
         num_particles = self.particles.__len__()
         sb = StringBuilder()
         sb.append("Box:")
@@ -90,7 +91,7 @@ class Box():
         for i in range(0, num_particles):
             particle = self.particles[i]
             sb.append("[p(%s), v(%s)]" % (particle.pos, particle.vel))
-            if (i+1) % 20 == 0:
+            if (i+1) % num_particles_per_line_in_display == 0:
                 sb.append("\n    ")
 
         return sb.__str__()
