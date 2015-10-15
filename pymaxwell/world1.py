@@ -8,6 +8,7 @@ class World1:
     WORLD_NAME = "World1"
     NUM_PARTICLES = 2
     box = None
+    t_previous = 0
 
     def __init__(self):
         print "Initializing instance of World1..."
@@ -22,9 +23,14 @@ class World1:
         print "World1:\n%s" % self.box
 
     def update(self):
-        print "%s: Updating world..." % clock()
+        t_current = clock()
+        t_delta = t_current - self.t_previous
+        print "%s: Updating world: t_delta: %s" % (t_current, t_delta)
+
         for particle in self.box.particles:
             particle.update_position(1)
+
+        self.t_previous = t_current
 
 
 class Vector():
