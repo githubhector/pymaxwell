@@ -22,7 +22,21 @@ class World1:
 
     def update(self):
         for particle in self.box.particles:
-            particle.update_position()
+            particle.update_position(1)
+
+
+class Vector():
+    """ A vector with the given x and y components
+    """
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def scalar_mult(self, scalar):
+        return Vector(scalar*self.x, scalar*self.y)
 
 
 class Box():
@@ -48,7 +62,7 @@ class Box():
         for i in range(0, num_particles):
             x_rand = randint(self.x_interval[0], self.x_interval[1])
             y_rand = randint(self.y_interval[0], self.y_interval[1])
-            self.add_particle(Particle(1, (x_rand, y_rand), (0,0)))
+            self.add_particle(Particle(1, Vector(x_rand, y_rand), Vector(0,0)))
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):
@@ -70,12 +84,12 @@ class Box():
 
 class Particle():
     """ A circular particle with given radius, position and velocity.
-    Expect pos and vel to be pairs (x,y) and (vx, vy)
+    Expect pos and vel to be vectors
     """
     def __init__(self, radius, pos, vel):
         self.radius = radius
         self.pos = pos
         self.vel = vel
 
-    def update_position(self):
-        pass
+    def update_position(self, delta_t):
+        self.pos = self.pos.__add__(self.vel.scalar_mult(delta_t))
