@@ -25,10 +25,12 @@ class World1:
     def update(self):
         t_current = clock()
         t_delta = t_current - self.t_previous
-        print "%s: Updating world: t_delta: %s" % (t_current, t_delta)
+        print "\n%s: Updating world: t_delta: %s" % (t_current, t_delta)
 
         for particle in self.box.particles:
-            particle.update_position(1)
+            particle.update_position(t_delta)
+
+        self.show()
 
         self.t_previous = t_current
 
@@ -74,7 +76,7 @@ class Box():
         for i in range(0, num_particles):
             x_rand = uniform(self.x_interval[0], self.x_interval[1])
             y_rand = uniform(self.y_interval[0], self.y_interval[1])
-            self.add_particle(Particle(1, Vector(x_rand, y_rand), Vector(0,0)))
+            self.add_particle(Particle(1, Vector(x_rand, y_rand), Vector(1,1)))
             print "x_rand:", x_rand, " y_rand:", y_rand
 
     def __str__(self):

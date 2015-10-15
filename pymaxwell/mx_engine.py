@@ -5,7 +5,7 @@ import threading
 class Engine:
 
     TICKS_PER_STATS_UPDATE = 1000
-    TICKS_PER_WORLD_UPDATE = 1000000
+    TICKS_PER_WORLD_UPDATE = 3000000
     MICROS_PER_SECOND = 1000000
     total_ticks = 0L
     time_previous_update = 0.0
