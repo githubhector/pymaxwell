@@ -12,7 +12,7 @@ class World1:
         print "Initializing instance of World1..."
 
         print "Creating box..."
-        self.box = Box(Vector(0,0), 100, 50)
+        self.box = Box(Vector(0,0), 1, 1)
 
         print "Adding particles to the box..."
         self.box.add_particles_at_random(self.NUM_PARTICLES)
@@ -26,7 +26,8 @@ class World1:
 
 
 class Vector():
-    """ A vector with the given x and y components
+    """ A vector with the given x and y components. Generally we assume MKS, e.g., position is in meters, mass in kilos,
+    time in seconds, velocity in meters/sec, etc.
     """
     def __init__(self, x, y):
         self.x = float(x)
