@@ -5,6 +5,7 @@ import threading
 class Engine:
 
     TICKS_PER_STATS_UPDATE = 1000
+    TICKS_PER_WORLD_UPDATE = 1000000
     MICROS_PER_SECOND = 1000000
     total_ticks = 0L
     time_previous_update = 0.0
@@ -27,7 +28,9 @@ class Engine:
         self.total_ticks += 1
         if self.total_ticks % self.TICKS_PER_STATS_UPDATE == 0:
             self.update_stats()
-        self.world.update()
+
+        if self.total_ticks % self.TICKS_PER_WORLD_UPDATE == 0:
+            self.world.update()
 
     def update_stats(self):
         time_now = time.time()

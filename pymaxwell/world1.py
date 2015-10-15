@@ -1,4 +1,5 @@
 from random import uniform
+from time import clock
 from utils import StringBuilder
 
 
@@ -12,7 +13,7 @@ class World1:
         print "Initializing instance of World1..."
 
         print "Creating box..."
-        self.box = Box(Vector(0,0), 1, 1)
+        self.box = Box(Vector(0,0), 10, 10)
 
         print "Adding particles to the box..."
         self.box.add_particles_at_random(self.NUM_PARTICLES)
@@ -21,6 +22,7 @@ class World1:
         print "World1:\n%s" % self.box
 
     def update(self):
+        print "%s: Updating world..." % clock()
         for particle in self.box.particles:
             particle.update_position(1)
 
