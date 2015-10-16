@@ -28,7 +28,7 @@ class World1:
         print "\n%s: Updating world: t_delta: %s" % (t_current, t_delta)
 
         for particle in self.box.particles:
-            particle.update_position(t_delta)
+            particle.update_position(self, t_delta)
 
         self.show()
 
@@ -106,5 +106,5 @@ class Particle():
         self.pos = pos
         self.vel = vel
 
-    def update_position(self, delta_t):
+    def update_position(self, world, delta_t):
         self.pos = self.pos + self.vel.scalar_mult(delta_t)
