@@ -107,4 +107,4 @@ class Particle():
         self.vel = vel
 
     def update_position(self, delta_t):
-        self.pos = self.pos.__add__(self.vel.scalar_mult(delta_t))
+        self.pos = self.pos + self.vel.scalar_mult(delta_t)
