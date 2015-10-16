@@ -49,6 +49,9 @@ class Vector():
     def scalar_mult(self, scalar):
         return Vector(scalar*self.x, scalar*self.y)
 
+    def reverse(self):
+        return Vector(-self.x, -self.y)
+
     def __str__(self):
         return "(%s,%s}" % (self.x, self.y)
 
@@ -108,15 +111,11 @@ class Particle():
     def update_position(self, world, delta_t):
         self.pos = self.pos + self.vel.scalar_mult(delta_t)
         if not self.is_inside_box(world.box):
-            self.vel_reverse()
+            self.vel = self.vel.reverse()
 
     def is_inside_box(self, box):
         return self.is_inside_interval(self.pos.x, box.x_interval)\
                and self.is_inside_interval(self.pos.y, box.y_interval)
-
-    # TODO make reverse a method in Vector
-    def vel_reverse(self):
-        self.vel = self.vel.scalar_mult(-1)
 
     def is_inside_interval(self, x, interval):
         return x > interval[0] and x < interval[1]
