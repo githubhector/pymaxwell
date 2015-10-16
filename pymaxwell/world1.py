@@ -117,5 +117,6 @@ class Particle():
         return self.is_inside_interval(self.pos.x, box.x_interval)\
                and self.is_inside_interval(self.pos.y, box.y_interval)
 
-    def is_inside_interval(self, x, interval):
-        return x > interval[0] and x < interval[1]
+    @staticmethod
+    def is_inside_interval(x, interval):
+        return interval[0] < x < interval[1]
