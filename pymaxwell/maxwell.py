@@ -39,6 +39,10 @@ class MaxwellCli(cmd.Cmd):
         else:
             print "Do not have an engine..."
 
+    def do_gui(self, line):
+        print "GUI..."
+
+
 def cli_thread():
     print "Starting CLI..."
     while True:
