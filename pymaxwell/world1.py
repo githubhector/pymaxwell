@@ -99,7 +99,6 @@ class Box():
 
 class Particle():
     """ A circular particle with given radius, position and velocity.
-    Expect pos and vel to be vectors
     """
     def __init__(self, radius, pos, vel):
         self.radius = radius
@@ -108,3 +107,16 @@ class Particle():
 
     def update_position(self, world, delta_t):
         self.pos = self.pos + self.vel.scalar_mult(delta_t)
+        if not self.is_inside_box(world.box):
+            self.vel_reverse()
+
+    def is_inside_box(self, box):
+        return self.is_inside_interval(self.pos.x, box.x_interval)\
+               and self.is_inside_interval(self.pos.y, box.y_interval)
+
+    # TODO make reverse a method in Vector
+    def vel_reverse(self):
+        self.vel = self.vel.scalar_mult(-1)
+
+    def is_inside_interval(self, x, interval):
+        return x > interval[0] and x < interval[1]
