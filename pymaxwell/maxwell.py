@@ -41,6 +41,42 @@ class MaxwellCli(cmd.Cmd):
 
     def do_gui(self, line):
         print "GUI..."
+        build_gui()
+
+
+
+###################################################################################
+# This is sample code, will be removed after figuring out how Tk works
+
+from Tkinter import *
+
+WIDTH = 400             # OF SCREEN IN PIXELS
+HEIGHT = 400            # OF SCREEN IN PIXELS
+FRAMES_PER_SEC = 40     # SCREEN UPDATE RATE
+
+def build_gui():
+    print "Building GUI..."
+    global graph, left, top
+    root = Tk()
+    root.resizable(False, False)
+    root.title('Balls')
+    left = (root.winfo_screenwidth() - WIDTH) / 2
+    top = (root.winfo_screenheight() - HEIGHT) / 2
+    root.geometry('%dx%d+%d+%d' % (WIDTH, HEIGHT, left, top))
+    root.bind_all('<Escape>', lambda event: event.widget.quit())
+    #root.bind('<Configure>', window_move)
+    graph = Canvas(root, width=WIDTH, height=HEIGHT, background='white')
+    #graph.after(1000 / FRAMES_PER_SEC, update)
+    #graph.after(1000, activate)
+    graph.pack()
+    graph.update()
+
+###################################################################################
+
+
+
+
+
 
 
 def cli_thread():
