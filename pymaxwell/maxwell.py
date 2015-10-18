@@ -57,8 +57,7 @@ if __name__ == '__main__':
     print "Building GUI 2"
     root = Tkinter.Tk()
     root.mainloop()
-    pass
-
+    
 
 
 
